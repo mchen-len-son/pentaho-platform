@@ -103,8 +103,12 @@ public class BeanUtil {
    * @return <code>true</code> if the bean property can be written to
    */
   public boolean isWriteable( String propertyName ) {
-    return propUtil.isWriteable( bean, propertyName )
+    try {
+      return propUtil.isWriteable( bean, propertyName )
         || ( propUtil.getResolver().isIndexed( propertyName ) && propUtil.isReadable( bean, propertyName ) );
+    } catch ( IllegalArgumentException e ) {
+      return false;
+    }
   }
 
   /**
