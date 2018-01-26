@@ -13,7 +13,7 @@
  * See the GNU General Public License for more details.
  *
  *
- * Copyright 2006 - 2017 Hitachi Vantara.  All rights reserved.
+ * Copyright 2006 - 2018 Hitachi Vantara.  All rights reserved.
  */
 
 package org.pentaho.platform.engine.services;
@@ -270,15 +270,6 @@ public class MessageFormatter implements IMessageFormatter {
               "MessageFormatter.EXCEPTION_FIELD_NOT_APPLICABLE" ) : exception.getLoopIndex().toString() ) ); //$NON-NLS-1$
       templateFile = StringUtils.replace( templateFile, "%LOOP_INDEX_LABEL%", Messages.getInstance() //$NON-NLS-1$
           .getString( "MessageFormatter.RESPONSE_EXCEPTION_LOOP_INDEX_LABEL" ) ); //$NON-NLS-1$
-
-      // %STACK_TRACE%
-      charWriter = new CharArrayWriter();
-      printWriter = new PrintWriter( charWriter );
-      exception.printStackTrace( printWriter );
-      templateFile = StringUtils.replace( templateFile, "%STACK_TRACE%", StringEscapeUtils.escapeHtml( charWriter //$NON-NLS-1$
-          .toString() ) );
-      templateFile = StringUtils.replace( templateFile, "%STACK_TRACE_LABEL%", Messages.getInstance() //$NON-NLS-1$
-          .getString( "MessageFormatter.RESPONSE_EXCEPTION_STACK_TRACE_LABEL" ) ); //$NON-NLS-1$
 
       // %EXCEPTION_MESSAGES%
       Stack<String> causes = new Stack<String>();
